@@ -1,0 +1,15 @@
+tests_output/
+__pycache__/
+
+.tox
+.coverage
+
+*.py[co]
+*.egg-info
+*.swp
+
+dist/
+docs/_build/
+
+virtualenv/
+venv/
