@@ -8,7 +8,7 @@ Out of the box, this flask extension makes it extremely easy to monitor your app
 pip install flask_prometheus
 ```
 
-## Basic Usage:
+## Basic Usage
 ```
 from flask import Flask
 from prometheus_client import monitor 
