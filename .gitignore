@@ -10,6 +10,7 @@ __pycache__/
 
 dist/
 docs/_build/
+build/
 
 virtualenv/
 venv/
