@@ -4,8 +4,8 @@
 Out of the box, this flask extension makes it extremely easy to monitor your application using SoundCloud's Prometheus. For more on Prometheus, see their [website](prometheus.io).
 
 This extension instruments every flask route and exports the following metrics:
-* Histogram: `<flask_request_latency_seconds>{'endpoint', 'method'}`
-* Summary: `<flask_request_count>{'endpoint','method','http_status'}`
+* Histogram: `<flask_request_latency_seconds> {'endpoint', 'method'}`
+* Summary: `<flask_request_count> {'endpoint','method','http_status'}`
 
 ## Installation
 ```
