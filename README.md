@@ -16,7 +16,7 @@ pip install flask_prometheus
 Type the following into an interpreter:
 ```
 from flask import Flask
-from prometheus_client import monitor 
+from flask_prometheus import monitor 
 
 app = Flask(__name__)
 
