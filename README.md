@@ -1,7 +1,7 @@
 # Flask-Prometheus
 
 ## About
-Out of the box, this flask extension makes it extremely easy to monitor your application using SoundCloud's Prometheus. For more on Prometheus, see their [website](prometheus.io).
+Out of the box, this flask extension makes it extremely easy to monitor your application using SoundCloud's Prometheus. For more on Prometheus, see their [website](https://prometheus.io).
 
 This extension instruments every flask route and exports the following metrics:
 * Histogram: `<flask_request_latency_seconds> {'endpoint', 'method'}`
