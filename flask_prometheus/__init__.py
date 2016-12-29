@@ -12,20 +12,20 @@ FLASK_REQUEST_COUNT = Counter('flask_request_count', 'Flask Request Count',
 
 
 def before_request():
-	request.start_time = time.time()
+    request.start_time = time.time()
 
 
 def after_request(response):
     request_latency = time.time() - request.start_time
-	FLASK_REQUEST_LATENCY.labels(request.method, request.path).observe(request_latency)
-	FLASK_REQUEST_COUNT.labels(request.method, request.path, response.status_code).inc()
+    FLASK_REQUEST_LATENCY.labels(request.method, request.path).observe(request_latency)
+    FLASK_REQUEST_COUNT.labels(request.method, request.path, response.status_code).inc()
 
-	return response
+    return response
 
 def monitor(app, port=8000, addr=''):
-	app.before_request(before_request)
-	app.after_request(after_request)
-	start_http_server(port, addr)
+    app.before_request(before_request)
+    app.after_request(after_request)
+    start_http_server(port, addr)
 
 if __name__ == '__main__':
     from flask import Flask
