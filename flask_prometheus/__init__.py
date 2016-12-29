@@ -16,7 +16,7 @@ def before_request():
 
 
 def after_request(response):
-	request_latency = time.time() - request.start_time
+    request_latency = time.time() - request.start_time
 	FLASK_REQUEST_LATENCY.labels(request.method, request.path).observe(request_latency)
 	FLASK_REQUEST_COUNT.labels(request.method, request.path, response.status_code).inc()
 
