@@ -1,9 +1,9 @@
-
 import time
 
-from prometheus_client import Counter, Histogram
-from prometheus_client import start_http_server
 from flask import request
+from prometheus_client import Counter, Histogram
+from prometheus_client import start_http_server, make_wsgi_app
+from werkzeug.wsgi import DispatcherMiddleware
 
 FLASK_REQUEST_LATENCY = Histogram('flask_request_latency_seconds', 'Flask Request Latency',
 				['method', 'endpoint'])
@@ -21,6 +21,18 @@ def after_request(response):
     FLASK_REQUEST_COUNT.labels(request.method, request.path, response.status_code).inc()
 
     return response
+
+
+def monitor_app(app, path="/metrics"):
+    app.before_request(before_request)
+    app.after_request(after_request)
+
+    prometheus_app = make_wsgi_app()
+
+    return DispatcherMiddleware(app, {
+        path: prometheus_app
+    })
+
 
 def monitor(app, port=8000, addr=''):
     app.before_request(before_request)
