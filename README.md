@@ -55,3 +55,20 @@ flask_request_latency_seconds_sum{endpoint="/",method="GET"} 0.00100278854370117
 ```
 
 Beware, this seems to not work when the app is run in debug mode.
+
+## WSGI Wrapper
+You may also use the WSGI wrapper to expose the metrics, like so:
+
+```
+from flask import Flask
+from flask_prometheus import monitor_app
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    return 'Hello'
+
+app = monitor_app(app)
+app.run()
+```
